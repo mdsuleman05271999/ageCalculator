@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .calculator {
+        position: absolute;
+        top: 20%;
+        left: 40%;
+        text-align: center;
+        border: 1px solid;
+        padding: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="calculator">
+        <h1>AGE CALCULATOR</h1>
+        <h3>Enter you date of birth</h3>
+        <form>
+          <input type="date" id="userAge" />
+          <input type="button" onclick="getDateValue()" value="CalculateAge" />
+        </form>
+        <h4>You are <span id="CalculatedAgeIs"></span> years old</h4>
+      </div>
+    </div>
+    <script>
+      function getDateValue() {
+        var dateInput = document.querySelector(`#userAge`)
+        var dateIs = dateInput.value
+
+        calculateYear(dateIs)
+        return dateIs
+      }
+      var calculateYear = (dateIs) => {
+        if (!dateIs) {
+          console.log("No date provided")
+          return
+        }
+        var birtYear = new Date(dateIs)
+        var today = new Date()
+        var monthDifference = today.getMonth() - birtYear.getMonth()
+        var age = today.getFullYear() - birtYear.getFullYear()
+        if (
+          monthDifference < 0 ||
+          (monthDifference === 0 && today.getDate() < birthDate.getDate())
+        ) {
+          age--
+        }
+        document.querySelector(`#CalculatedAgeIs`).innerHTML = age
+      }
+    </script>
+  </body>
+</html>
